@@ -52,9 +52,7 @@ async def create_user(db: AsyncSession, user: UserCreateModel) -> UserModel:
 
 
 async def update_user(db: AsyncSession, user: PasswordModel) -> None:
-    statement = select(User).where(
-        and_(User.name == user.name, User.email == user.email)
-    )
+    statement = select(User).where(and_(User.name == user.name, User.email == user.email))
     result = await db.execute(statement)
     db_user = result.scalar()
     if db_user is None:
@@ -65,9 +63,7 @@ async def update_user(db: AsyncSession, user: PasswordModel) -> None:
 
 
 async def delete_user(db: AsyncSession, user: DeleteModel) -> None:
-    statement = delete(User).where(
-        and_(User.name == user.name, User.email == user.email)
-    )
+    statement = delete(User).where(and_(User.name == user.name, User.email == user.email))
     user_signin = UserSigninModel(name=user.name, password=user.password)
     await check_user_exists(user=user_signin, db=db)
     await db.execute(statement)

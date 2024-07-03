@@ -22,6 +22,4 @@ async def submit_dialogue(conversation: ConversationModel) -> ConversationRespon
     parsed_response: dict[str, str] = json.loads(schedule_response)
     calender_utils.add_event_to_calendar(parsed_response)
 
-    return ConversationResponseModel(
-        schedule_response=schedule_response, parsed_response=parsed_response
-    )
+    return ConversationResponseModel(schedule_response=schedule_response, parsed_response=parsed_response)
