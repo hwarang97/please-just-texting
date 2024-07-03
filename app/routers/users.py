@@ -99,6 +99,7 @@ async def delete_user_endpoint(
     """
     Detele user by name, password, email
 
+
     - **name (str)**: username
     - **password (str)**: password
     - **email (Emailstr)**: email
