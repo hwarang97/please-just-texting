@@ -39,7 +39,7 @@ async def signin(
         - **UserResponseModel**: A response model containing "result", "name", "email", "error" message.
 
     - **Raise**
-        - **HTTPException**: If user's name or email is invalid, or any validation error occurs.
+        - **HTTPException**: If user's "name" or "email" is invalid, or any validation error occurs.
     """
 
     try:
@@ -68,7 +68,7 @@ async def create_user_endpoint(
         - **UserResponseModel**: A response model containing "result", "name", "email", "error" message.
 
     - **Raise**
-        - **HTTPException**: If user's name or email is invalid, or any validation error occurs.
+        - **HTTPException**: If user's "name" or "email" is invalid, or any validation error occurs.
     """
 
     user: UserModel = await create_user(user=user, db=db)
@@ -81,7 +81,7 @@ async def read_find_account_response_form(
     db: AsyncSession = Depends(get_db),
 ) -> UserResponseModel:
     """
-    Find Username by email
+    Find "name" by "email"
 
     - **Args**
         - **user (RecoveryModel)**: An object containing user's "email".
@@ -92,7 +92,7 @@ async def read_find_account_response_form(
         - **UserResponseModel**: A response model containing "result", "name", "email", "error" message.
 
     - **Raise**
-        - **HTTPException**: If user's name or email is invalid, or any validation error occurs.
+        - **HTTPException**: If user's "name" or "email" is invalid, or any validation error occurs.
 
     """
 
@@ -121,7 +121,7 @@ async def read_password_response_form(
         - **UserResponseModel**: A response model containing "result", "name", "email", "error" message.
 
     - **Raise**
-        - **HTTPException**: If user's name or email is invalid, or any validation error occurs.
+        - **HTTPException**: If user's "name" or "email" is invalid, or any validation error occurs.
     """
 
     await update_user(user=user, db=db)
@@ -134,10 +134,10 @@ async def delete_user_endpoint(
     db: AsyncSession = Depends(get_db),
 ) -> UserResponseModel:
     """
-    Detele user by name, password, email
+    Detele user by "name", "password", "email"
 
     - **Arg**
-        - **user (DeleteModel): An object containing user's "name", "password", "email".
+        - **user (DeleteModel)**: An object containing user's "name", "password", "email".
             - **name (str)**: username
             - **password (str)**: password
             - **email (Emailstr)**: email
@@ -146,7 +146,7 @@ async def delete_user_endpoint(
         - **UserResponseModel**: A response model containing "result", "name", "email", "error" message.
 
     - **Raise**
-        - **HTTPException**: If user's name or email is invalid, or any validation error occurs.
+        - **HTTPException**: If user's "name" or "email" is invalid, or any validation error occurs.
     """
 
     await delete_user(user=user, db=db)
