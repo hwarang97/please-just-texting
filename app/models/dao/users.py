@@ -26,14 +26,14 @@ async def get_user_by_email(db: AsyncSession, email: str) -> User | None:
     return result.scalar_one_or_none()
 
 
-async def check_user_exists(db: AsyncSession, user: UserSigninModel):
+async def check_user_exists(db: AsyncSession, user: UserSigninModel) -> None:
     db_user: str | None = await get_user_by_name(db=db, name=user.name)
     if db_user and pwd_context.verify(user.password, db_user.password_hash):
         return
     raise HTTPException(status_code=401, detail="Invalid username or password")
 
 
-async def check_user_duplicate(db: AsyncSession, name: str, email: str):
+async def check_user_duplicate(db: AsyncSession, name: str, email: str) -> None:
     existing_user_by_name: str | None = await get_user_by_name(db=db, name=name)
     existing_user_by_email: str | None = await get_user_by_email(db=db, email=email)
     if existing_user_by_name or existing_user_by_email:
