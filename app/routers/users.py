@@ -29,8 +29,17 @@ async def signin(
     """
     Authenticate a user
 
-    - **username (str)**: username to signin
-    - **password (str)**: password to signin
+    - **Args**
+        - **user (UserSigninModel)**: An object containing user's "name", "password".
+            - **name (str)**: username
+            - **password (str)**: password
+        - **db (AsyncSession)**: The database session dependency.
+
+    - **Returns**
+        - **UserResponseModel**: A response model containing "result", "name", "email", "error" message.
+
+    - **Raise**
+        - **HTTPException**: If user's name or email is invalid, or any validation error occurs.
     """
 
     try:
@@ -48,9 +57,18 @@ async def create_user_endpoint(
     """
     Create user
 
-    - **username (str)**: username
-    - **password (str)**: password
-    - **email (str)** : user email(used for recovery)
+    - **Args**
+        - **user (UserCreateModel)**: An object containing user's "name", "password", "email".
+            - **name (str)**: username
+            - **password (str)**: password
+            - **email (EmailStr)**: email
+        - **db (AsyncSession)**: The database session dependency.
+
+    - **Returns**
+        - **UserResponseModel**: A response model containing "result", "name", "email", "error" message.
+
+    - **Raise**
+        - **HTTPException**: If user's name or email is invalid, or any validation error occurs.
     """
 
     user: UserModel = await create_user(user=user, db=db)
@@ -65,7 +83,17 @@ async def read_find_account_response_form(
     """
     Find Username by email
 
-    - **email (str)**: email associated with username
+    - **Args**
+        - **user (RecoveryModel)**: An object containing user's "email".
+            - **email (EmailStr)**: email
+        - **db (AsyncSession)**: The database session dependency.
+
+    - **Returns**
+        - **UserResponseModel**: A response model containing "result", "name", "email", "error" message.
+
+    - **Raise**
+        - **HTTPException**: If user's name or email is invalid, or any validation error occurs.
+
     """
 
     user: User = await get_user_by_email(email=user.email, db=db)
@@ -82,9 +110,18 @@ async def read_password_response_form(
     """
     Reset Password by new_password
 
-    - **name (str)**: username
-    - **email (EmailStr)**: password
-    - **new_password (str)**: new password
+    - **Args**
+        - **user (PasswordModel)**: An object containing user's "name", "email", "new_password".
+            - **name (str)**: username
+            - **email (EmailStr)**: email
+            - **new_password (str)**: new password
+        - **db (AsyncSession)**: The database session dependency.
+
+    - **Returns**
+        - **UserResponseModel**: A response model containing "result", "name", "email", "error" message.
+
+    - **Raise**
+        - **HTTPException**: If user's name or email is invalid, or any validation error occurs.
     """
 
     await update_user(user=user, db=db)
@@ -99,10 +136,17 @@ async def delete_user_endpoint(
     """
     Detele user by name, password, email
 
+    - **Arg**
+        - **user (DeleteModel): An object containing user's "name", "password", "email".
+            - **name (str)**: username
+            - **password (str)**: password
+            - **email (Emailstr)**: email
 
-    - **name (str)**: username
-    - **password (str)**: password
-    - **email (Emailstr)**: email
+    - **Return**
+        - **UserResponseModel**: A response model containing "result", "name", "email", "error" message.
+
+    - **Raise**
+        - **HTTPException**: If user's name or email is invalid, or any validation error occurs.
     """
 
     await delete_user(user=user, db=db)

@@ -15,7 +15,17 @@ async def submit_dialogue(conversation: ConversationModel) -> ConversationRespon
     """
     Create event to calendar with all information:
 
-    - **message**: conversation containing date.
+    - **Args**:
+        - **conversation (ConversationModel)**: An object containing "message".
+        - **message (str)**: conversation containing date.
+
+    - **Returns**:
+        - **ConversationalResponseModel**: A reponse model containig "schedule_response", "parsed_response".
+            - **schedule_response (str)**: response containig schedule info.
+            - **parsed_response (dict)**: serialized schedule_response.
+    - **Raise**
+        - **HTTPException**: If user's convesation is invalid, or any validation error occurs.
+
     """
 
     schedule_response: str = openai_utils.getResponseFromOpenai(conversation.message)
