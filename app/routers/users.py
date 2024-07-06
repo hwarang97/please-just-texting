@@ -50,7 +50,7 @@ async def signin(
 
 
 @router.post("/signup", summary="signup")
-async def create_user_endpoint(
+async def signup(
     user: UserCreateModel,
     db: AsyncSession = Depends(get_db),
 ) -> UserResponseModel:
@@ -76,7 +76,7 @@ async def create_user_endpoint(
 
 
 @router.post("/recovery", summary="recover account")
-async def read_find_account_response_form(
+async def recovery_name(
     user: RecoveryModel,
     db: AsyncSession = Depends(get_db),
 ) -> UserResponseModel:
@@ -103,7 +103,7 @@ async def read_find_account_response_form(
 
 
 @router.post("/password", summary="reset password")
-async def read_password_response_form(
+async def reset_password(
     user: PasswordModel,
     db: AsyncSession = Depends(get_db),
 ) -> UserResponseModel:
@@ -129,7 +129,7 @@ async def read_password_response_form(
 
 
 @router.delete("/delete", summary="delete user")
-async def delete_user_endpoint(
+async def delete(
     user: DeleteModel,
     db: AsyncSession = Depends(get_db),
 ) -> UserResponseModel:
