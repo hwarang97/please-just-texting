@@ -47,7 +47,7 @@ async def create_user(db: AsyncSession, user: UserCreateModel) -> UserModel:
     db.add(db_user)
     await db.commit()
     await db.refresh(db_user)
-    user_model = UserModel.from_orm(db_user)
+    user_model = UserModel.model_validate(db_user)
     return user_model
 
 
