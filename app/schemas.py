@@ -15,7 +15,7 @@ class UserCreateModel(BaseModel):
 
 
 class RecoveryModel(BaseModel):
-    email: str
+    email: EmailStr
 
 
 class PasswordModel(BaseModel):
