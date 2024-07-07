@@ -20,3 +20,6 @@ passlib==1.7.4
 email-validator==2.1.1
 asyncmy==0.2.9
 cryptography==42.0.7
+pydantic==2.6.3
+google-auth==2.28.1
+google-api-python-client==2.119.0
