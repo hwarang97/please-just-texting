@@ -1,4 +1,5 @@
 import uvicorn
+from app.routers import authentication
 from app.routers import conversations
 from app.routers import default
 from app.routers import users
@@ -10,6 +11,7 @@ app = FastAPI()
 app.include_router(default.router)
 app.include_router(users.router)
 app.include_router(conversations.router)
+app.include_router(authentication.router)
 templates = Jinja2Templates(directory="app/templates")
 
 
