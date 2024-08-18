@@ -45,6 +45,12 @@ class UserResponseModel(BaseModel):
     error: str | None = None
 
 
+class UserInDB(BaseModel):
+    username: str
+    hashed_password: str
+    email: EmailStr
+
+
 class ConversationModel(BaseModel):
     message: str = Field(...)
 
