@@ -1,5 +1,6 @@
 from pathlib import Path
 
+from pydantic import ConfigDict
 from pydantic import Field
 from pydantic_settings import BaseSettings
 
@@ -11,8 +12,8 @@ class Settings(BaseSettings):
     conf_host: str = "0.0.0.0"
     conf_port: int = 8000
 
-    openai_api_key: str = Field(..., env="OPENAI_API_KEY")
-    impersonation_account: str = Field(..., env="IMPERSONATION_ACCOUNT")
+    openai_api_key: str = Field(..., json_schema_extra={"env": "OPENAI_API_KEY"})
+    impersonation_account: str = Field(..., json_schema_extra={"env": "IMPERSONATION_ACCOUNT"})
 
     database_host: str
     database_port: int
@@ -20,7 +21,7 @@ class Settings(BaseSettings):
     database_password: str
     database_name: str
 
-    class Config:
+    class Config(ConfigDict):
         env_file = ".env"
         env_prefix = "CONF_"
 
