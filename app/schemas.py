@@ -1,4 +1,5 @@
 from pydantic import BaseModel
+from pydantic import ConfigDict
 from pydantic import EmailStr
 from pydantic import Field
 
@@ -38,7 +39,7 @@ class UserModel(BaseModel):
     name: str
     email: EmailStr
 
-    class Config:
+    class Config(ConfigDict):
         from_attributes = True
 
 
